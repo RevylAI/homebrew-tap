@@ -1,13 +1,13 @@
 class Revyl < Formula
   desc "AI-powered mobile app testing CLI"
   homepage "https://revyl.ai"
-  version "0.0.1"
+  version "0.1.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/RevylAI/revyl-cli/releases/download/v#{version}/revyl-darwin-arm64"
-      sha256 "PLACEHOLDER"
+      sha256 "6819ea0a09602d82aef10b477b868bd7c122d494f96f583b3b7ab2972ebfcbc3"
     else
       url "https://github.com/RevylAI/revyl-cli/releases/download/v#{version}/revyl-darwin-amd64"
       sha256 "PLACEHOLDER"
