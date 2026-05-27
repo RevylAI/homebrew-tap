@@ -2,25 +2,25 @@ class Revyl < Formula
   desc "AI-powered mobile app testing CLI"
   homepage "https://revyl.ai"
   license "MIT"
-  version "0.1.26"
+  version "0.1.27"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/RevylAI/revyl-cli/releases/download/v0.1.26/revyl-darwin-arm64"
-      sha256 "937ee60220ab770620607ec5ff727c893319e7cbcf6737eb2b6340fa3a881d21"
+      url "https://github.com/RevylAI/revyl-cli/releases/download/v0.1.27/revyl-darwin-arm64"
+      sha256 "a01e5056da12a5fcb9b3da03e234f52cc6d7bb4e679681a7d27e3673bda9d1bd"
     else
-      url "https://github.com/RevylAI/revyl-cli/releases/download/v0.1.26/revyl-darwin-amd64"
-      sha256 "2277f19358d06f87a556f6b690ec6f5fc8b84cb1ba5cc8db439f77fb40628dd0"
+      url "https://github.com/RevylAI/revyl-cli/releases/download/v0.1.27/revyl-darwin-amd64"
+      sha256 "a895b5043d98e1380ec670c40ce6af6bb6bf4f391eeffbe179b27d718225668b"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/RevylAI/revyl-cli/releases/download/v0.1.26/revyl-linux-arm64"
-      sha256 "798079e81bcd4a305d80248e64186156942cf1f391a611108e3cb84071a4de5a"
+      url "https://github.com/RevylAI/revyl-cli/releases/download/v0.1.27/revyl-linux-arm64"
+      sha256 "47cd14f6640c7cfaf06d436d6cc148bfb54582b538df33d58c998e30f1c8ef53"
     else
-      url "https://github.com/RevylAI/revyl-cli/releases/download/v0.1.26/revyl-linux-amd64"
-      sha256 "f0100bca18f6d88b297a84f05d300e64ead4aabd46d043d21e871bc5c8f67971"
+      url "https://github.com/RevylAI/revyl-cli/releases/download/v0.1.27/revyl-linux-amd64"
+      sha256 "7bfae0cdc8cef6361b80c9e7954b88bcb94a2cefda05702bbf7c4607993b500f"
     end
   end
 
