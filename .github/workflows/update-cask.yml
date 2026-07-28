@@ -1,0 +1,55 @@
+name: Update greenlight cask
+
+# Keeps Casks/greenlight.rb in step with the latest published greenlight
+# release, without a cross-repo token.
+#
+# The greenlight release workflow is meant to push the cask here itself, but
+# that needs a HOMEBREW_TAP_TOKEN PAT, because a workflow's built-in
+# GITHUB_TOKEN cannot write to another repository. That secret has never
+# existed, so the v0.2.0 release published its binaries and then failed on the
+# cask step, leaving this tap on v0.1.0.
+#
+# Reading a public repo's releases needs no credentials, and a workflow can
+# write to its own repo, so the tap polls instead. Nothing here needs a secret
+# or an admin to configure it.
+
+on:
+  schedule:
+    # Hourly. A release is visible here within the hour, or immediately if
+    # someone runs this manually from the Actions tab.
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+# The default GITHUB_TOKEN is read-only in some org configurations, so the write
+# this job needs is requested explicitly.
+permissions:
+  contents: write
+
+concurrency:
+  group: update-cask
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Regenerate the cask from the latest release
+        id: gen
+        env:
+          # Only used to raise the API rate limit; the endpoints are public.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/update_cask.py
+
+      - name: Commit
+        if: steps.gen.outputs.changed == 'true'
+        env:
+          VERSION: ${{ steps.gen.outputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Casks/greenlight.rb
+          git commit -m "greenlight ${VERSION}" \
+            -m "Regenerated from the published release by .github/workflows/update-cask.yml."
+          git push
