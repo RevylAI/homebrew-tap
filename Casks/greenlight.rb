@@ -25,7 +25,7 @@ cask "greenlight" do
   end
 
   name "greenlight"
-  desc "Pre-submission compliance scanner for the Apple App Store and Google Play"
+  desc "WRITE PATH TEST - should be reverted by the workflow"
   homepage "https://github.com/RevylAI/greenlight"
 
   livecheck do
